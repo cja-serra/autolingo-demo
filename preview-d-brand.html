@@ -22,7 +22,7 @@
     --dark-text: #1a1a2e;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-user-select: none; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Inter', sans-serif;
@@ -789,6 +789,8 @@
 </div>
 
 <script>
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
