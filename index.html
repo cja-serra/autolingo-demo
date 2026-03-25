@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Lingo Plus — Design Previews</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0A0A0A;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .badge {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 16px;
+  }
+
+  h1 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    width: 100%;
+    max-width: 860px;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    background: #141414;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 28px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .card:hover {
+    border-color: #444;
+    transform: translateY(-3px);
+  }
+
+  .card-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #555;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  .card-arrow {
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .card:hover .card-arrow { color: #fff; }
+
+  .card-a { --accent: #00B4D8; }
+  .card-b { --accent: #CC0000; }
+  .card-c { --accent: #7C3AED; }
+
+  .card-a:hover { border-color: rgba(0,180,216,0.35); }
+  .card-b:hover { border-color: rgba(204,0,0,0.35); }
+  .card-c:hover { border-color: rgba(124,58,237,0.35); }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .quote-link {
+    font-size: 0.85rem;
+    color: #444;
+    text-decoration: none;
+    border: 1px solid #222;
+    padding: 10px 20px;
+    border-radius: 6px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .quote-link:hover { color: #fff; border-color: #555; }
+
+  .footer {
+    margin-top: 48px;
+    font-size: 0.75rem;
+    color: #333;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+  <p class="badge">Sample Designs · Confidential</p>
+  <h1>Auto Lingo Plus</h1>
+  <p class="subtitle">Three design directions — tap any to explore the full site</p>
+
+  <div class="cards">
+    <a href="preview-a-edtech.html" class="card card-a">
+      <div class="card-label"><span class="dot" style="display:inline-block;margin-right:6px;vertical-align:middle;"></span>Option A</div>
+      <div class="card-title">EdTech Modern</div>
+      <div class="card-desc">Clean, bright, and approachable. Teal & gold palette — feels like a trusted learning platform.</div>
+      <div class="card-arrow">View design →</div>
+    </a>
+
+    <a href="preview-b-heritage.html" class="card card-b">
+      <div class="card-label"><span class="dot" style="display:inline-block;margin-right:6px;vertical-align:middle;"></span>Option B</div>
+      <div class="card-title">German Heritage</div>
+      <div class="card-desc">Bold and authoritative. Black, red & gold — rooted in German identity, builds instant credibility.</div>
+      <div class="card-arrow">View design →</div>
+    </a>
+
+    <a href="preview-c-premium.html" class="card card-c">
+      <div class="card-label"><span class="dot" style="display:inline-block;margin-right:6px;vertical-align:middle;"></span>Option C</div>
+      <div class="card-title">Premium Dark</div>
+      <div class="card-desc">Sleek and sophisticated. Dark mode with purple accents — positions the service as high-end.</div>
+      <div class="card-arrow">View design →</div>
+    </a>
+  </div>
+
+  <a href="price-quote.html" class="quote-link">View price quote →</a>
+
+  <p class="footer">Prepared exclusively for Auto Lingo Plus · Not for distribution</p>
+
+</body>
+</html>

@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Lingo Plus — Your Gateway to Germany</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1B2A4A;
+    --navy-light: #243554;
+    --amber: #FF9A3C;
+    --amber-dark: #E8852A;
+    --amber-glow: rgba(255,154,60,0.25);
+    --cream: #FFF8F0;
+    --cream-dark: #F5EDE0;
+    --white: #FFFFFF;
+    --muted: rgba(255,255,255,0.55);
+    --border-dark: rgba(255,255,255,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── PARTICLES ── */
+  #particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 0 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    background: rgba(13,27,42,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 1.25rem;
+    color: white; text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .logo span {
+    color: var(--amber);
+    position: relative;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem; font-weight: 500;
+    color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: white; }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--navy); font-family: 'Poppins', sans-serif;
+    font-weight: 700; font-size: 0.85rem;
+    padding: 10px 24px; border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 0 20px var(--amber-glow);
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { box-shadow: 0 0 35px rgba(255,154,60,0.5); transform: translateY(-2px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding: 120px 6% 80px;
+    position: relative; z-index: 1;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+  .glow1 {
+    width: 600px; height: 600px;
+    background: rgba(255,154,60,0.08);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    animation: glowPulse 6s ease-in-out infinite;
+  }
+  .glow2 {
+    width: 300px; height: 300px;
+    background: rgba(30,100,200,0.15);
+    top: 20%; right: 10%;
+    animation: glowPulse 8s ease-in-out 2s infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,154,60,0.1);
+    border: 1px solid rgba(255,154,60,0.25);
+    color: var(--amber);
+    padding: 8px 20px; border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 2rem;
+    animation: fadeIn 1s ease both;
+  }
+  .eyebrow-dot { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; animation: dotBlink 2s ease-in-out infinite; }
+  @keyframes dotBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 900px;
+    animation: heroReveal 1s ease 0.2s both;
+  }
+
+  .hero h1 .line-amber {
+    color: var(--amber);
+    display: block;
+    position: relative;
+  }
+  .hero h1 .line-amber::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 50%; transform: translateX(-50%);
+    width: 60%; height: 2px;
+    background: linear-gradient(to right, transparent, var(--amber), transparent);
+    animation: lineGrow 1s ease 1s both;
+  }
+
+  @keyframes lineGrow {
+    from { width: 0; opacity: 0; }
+    to { width: 60%; opacity: 1; }
+  }
+
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.75;
+    max-width: 580px;
+    animation: heroReveal 1s ease 0.4s both;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: heroReveal 1s ease 0.6s both;
+  }
+
+  .btn-amber {
+    background: var(--amber);
+    color: var(--navy);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    padding: 16px 36px; border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 0 30px var(--amber-glow), 0 4px 20px rgba(255,154,60,0.3);
+    transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-amber:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(255,154,60,0.5), 0 8px 30px rgba(255,154,60,0.4); }
+
+  .btn-ghost {
+    background: transparent;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; font-size: 1rem;
+    padding: 15px 36px; border-radius: 50px;
+    text-decoration: none;
+    border: 1px solid var(--border-dark);
+    transition: all 0.25s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-ghost:hover { border-color: rgba(255,154,60,0.4); color: var(--amber); }
+
+  .hero-flags {
+    margin-top: 2.5rem;
+    display: flex; align-items: center; gap: 1rem; justify-content: center;
+    animation: heroReveal 1s ease 0.8s both;
+  }
+  .flag-item {
+    display: flex; align-items: center; gap: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem; color: var(--muted);
+    font-weight: 500;
+  }
+  .flag-sep { width: 40px; height: 1px; background: var(--border-dark); }
+  .arrow-right {
+    font-size: 1.2rem; color: var(--amber);
+    animation: arrowMove 2s ease-in-out infinite;
+  }
+  @keyframes arrowMove {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(8px); }
+  }
+
+  .hero-stats {
+    margin-top: 3rem;
+    display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-dark);
+    animation: heroReveal 1s ease 1s both;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--amber), #FFD080);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+  @keyframes heroReveal {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 120px 6%;
+    position: relative; z-index: 1;
+  }
+
+  .section-tag {
+    display: inline-block;
+    color: var(--amber);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-p {
+    color: var(--muted);
+    font-size: 1rem; line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 3.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .s-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-dark);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0; transform: translateY(30px);
+  }
+  .s-card.visible { animation: fadeUp 0.6s ease forwards; }
+  .s-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--amber), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .s-card:hover {
+    background: rgba(255,154,60,0.04);
+    border-color: rgba(255,154,60,0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+  .s-card:hover::before { opacity: 1; }
+
+  .s-icon {
+    width: 52px; height: 52px;
+    background: rgba(255,154,60,0.1);
+    border: 1px solid rgba(255,154,60,0.2);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .s-card:hover .s-icon { background: rgba(255,154,60,0.2); box-shadow: 0 0 20px var(--amber-glow); }
+
+  .s-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .s-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+  .s-link {
+    display: inline-flex; align-items: center; gap: 5px;
+    margin-top: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--amber); text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .s-link:hover { gap: 10px; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── WHY ── */
+  .why {
+    padding: 120px 6%;
+    position: relative; z-index: 1;
+    background: rgba(255,255,255,0.02);
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+  }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .why-card {
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-dark);
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+    opacity: 0; transform: translateY(30px);
+  }
+  .why-card.visible { animation: fadeUp 0.6s ease forwards; }
+  .why-card:hover { border-color: rgba(255,154,60,0.25); background: rgba(255,154,60,0.03); }
+
+  .why-num {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem; font-weight: 800;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--amber); opacity: 0.6;
+    margin-bottom: 1rem;
+  }
+
+  .why-icon { font-size: 2.8rem; display: block; margin-bottom: 1rem; }
+  .why-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+  .why-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 120px 6%;
+    position: relative; z-index: 1;
+  }
+
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .t-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border-dark);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.3s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .t-card.visible { animation: fadeUp 0.6s ease forwards; }
+  .t-card:hover { border-color: rgba(255,154,60,0.2); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+
+  .t-stars { color: var(--amber); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .t-quote {
+    font-size: 0.95rem; color: rgba(255,255,255,0.8);
+    line-height: 1.8; font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+  .t-person {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-dark);
+  }
+  .t-avatar {
+    width: 44px; height: 44px;
+    background: rgba(255,154,60,0.1);
+    border: 1px solid rgba(255,154,60,0.2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .t-name { font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 700; }
+  .t-role { font-size: 0.78rem; color: var(--amber); margin-top: 2px; }
+
+  /* ── CTA ── */
+  .cta {
+    padding: 120px 6%;
+    text-align: center;
+    position: relative; z-index: 1;
+    overflow: hidden;
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(255,154,60,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .cta-badge {
+    display: inline-block;
+    background: rgba(255,154,60,0.1);
+    border: 1px solid rgba(255,154,60,0.25);
+    color: var(--amber);
+    padding: 8px 20px; border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .cta h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+  }
+  .cta h2 span { color: var(--amber); }
+  .cta p { font-size: 1.1rem; color: var(--muted); margin-bottom: 2.5rem; }
+
+  .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(0,0,0,0.4);
+    border-top: 1px solid var(--border-dark);
+    padding: 2.5rem 6%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    position: relative; z-index: 1;
+  }
+  .footer-logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 1.1rem; color: white;
+  }
+  .footer-logo span { color: var(--amber); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.82rem; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+    font-family: 'Poppins', sans-serif; font-weight: 500;
+  }
+  .footer-links a:hover { color: var(--amber); }
+  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
+
+  /* ── CHAT ── */
+  .chat-widget { position: fixed; bottom: 28px; right: 28px; z-index: 999; }
+  .chat-btn {
+    width: 62px; height: 62px;
+    background: linear-gradient(135deg, var(--amber), var(--amber-dark));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 0 0 var(--amber-glow);
+    animation: chatRing 3s ease-in-out infinite;
+    transition: transform 0.2s;
+  }
+  .chat-btn:hover { transform: scale(1.1); }
+  @keyframes chatRing {
+    0% { box-shadow: 0 0 0 0 rgba(255,154,60,0.5); }
+    70% { box-shadow: 0 0 0 16px rgba(255,154,60,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,154,60,0); }
+  }
+  .chat-label {
+    position: absolute;
+    right: 74px; top: 50%; transform: translateY(-50%);
+    background: var(--navy-mid);
+    border: 1px solid var(--border-dark);
+    color: white;
+    padding: 8px 14px; border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .chat-label::after {
+    content: '';
+    position: absolute;
+    right: -6px; top: 50%; transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: var(--navy-mid);
+    border-right: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- PARTICLES CANVAS -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Auto<span>Lingo</span>Plus</a>
+  <ul class="nav-links">
+    <li><a href="#services">Programs</a></li>
+    <li><a href="#why">Why Germany</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Begin Your Journey</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-glow glow1"></div>
+  <div class="hero-glow glow2"></div>
+
+  <div class="hero-eyebrow">
+    <span class="eyebrow-dot"></span>
+    Philippines' Premier Germany Pathway Program
+  </div>
+
+  <h1>
+    Your Dream Life in Germany.<br>
+    <span class="line-amber">We Make It Happen.</span>
+  </h1>
+
+  <p class="hero-sub">
+    From your first German word to your first German paycheck — Auto Lingo Plus guides Filipinos every step of the journey to a better life in Germany.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#" class="btn-amber">🚀 Start Free Today</a>
+    <a href="#services" class="btn-ghost">Explore Programs ↓</a>
+  </div>
+
+  <div class="hero-flags">
+    <div class="flag-item"><span>🇵🇭</span> Philippines</div>
+    <div class="flag-sep"></div>
+    <div class="arrow-right">→</div>
+    <div class="flag-sep"></div>
+    <div class="flag-item">🇩🇪 Germany</div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Students Enrolled</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">98%</div>
+      <div class="stat-label">Visa Success Rate</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">German Partners</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6+</div>
+      <div class="stat-label">Years Experience</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-tag">Complete Programs</div>
+  <h2 class="section-h2">Everything You Need<br>Under One Roof</h2>
+  <p class="section-p">Six fully integrated pathways — language, education, career, family, and settlement. One team, one journey.</p>
+
+  <div class="services-grid">
+    <div class="s-card">
+      <div class="s-icon">🎓</div>
+      <div class="s-title">German Language Course</div>
+      <div class="s-desc">A1 to C1 certification with live instructors. Flexible schedule, real conversation, proven results.</div>
+      <a href="#" class="s-link">Explore course →</a>
+    </div>
+    <div class="s-card">
+      <div class="s-icon">🏫</div>
+      <div class="s-title">Study in Germany</div>
+      <div class="s-desc">University applications, scholarship guidance, and student visa processing — all handled for you.</div>
+      <a href="#" class="s-link">Learn more →</a>
+    </div>
+    <div class="s-card">
+      <div class="s-icon">👨‍👩‍👧</div>
+      <div class="s-title">Family Reunification</div>
+      <div class="s-desc">We guide the entire family visa process so the people you love can join you in Germany.</div>
+      <a href="#" class="s-link">Learn more →</a>
+    </div>
+    <div class="s-card">
+      <div class="s-icon">💼</div>
+      <div class="s-title">Job Placement</div>
+      <div class="s-desc">Direct access to 50+ German companies hiring skilled Filipinos. CV prep, interview coaching included.</div>
+      <a href="#" class="s-link">View openings →</a>
+    </div>
+    <div class="s-card">
+      <div class="s-icon">📝</div>
+      <div class="s-title">Document Translation</div>
+      <div class="s-desc">Certified translation of all your documents — diplomas, IDs, civil records — for German authorities.</div>
+      <a href="#" class="s-link">Get a quote →</a>
+    </div>
+    <div class="s-card">
+      <div class="s-icon">🛡️</div>
+      <div class="s-title">Travel & Health Insurance</div>
+      <div class="s-desc">Insurance packages built specifically for Filipinos relocating or traveling to Germany.</div>
+      <a href="#" class="s-link">View plans →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY GERMANY -->
+<section class="why" id="why">
+  <div class="section-tag">Why Germany</div>
+  <h2 class="section-h2">The Opportunity of a Lifetime<br>Is Waiting for You</h2>
+  <p class="section-p">Germany isn't just a destination. It's a reset — a new standard of living, security, and possibility.</p>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <span class="why-icon">🏥</span>
+      <div class="why-title">Universal Healthcare</div>
+      <div class="why-desc">Complete health coverage for you and your family the moment your residency begins.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <span class="why-icon">💶</span>
+      <div class="why-title">€45,000+ Average Salary</div>
+      <div class="why-desc">Europe's most powerful economy — strong wages, reliable paycheck, protected workers.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <span class="why-icon">🎓</span>
+      <div class="why-title">Free University Education</div>
+      <div class="why-desc">Your children can attend German universities for free. No tuition. No student debt.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <span class="why-icon">🌍</span>
+      <div class="why-title">Live Across Europe</div>
+      <div class="why-desc">German residency unlocks visa-free travel across 26 Schengen countries.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-tag">Real Stories</div>
+  <h2 class="section-h2">Filipinos Who Changed<br>Their Lives With Us</h2>
+
+  <div class="t-grid">
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"I went from never speaking a word of German to holding a nursing license in Bavaria. Auto Lingo Plus was there every single step. I can't imagine doing this without them."</div>
+      <div class="t-person">
+        <div class="t-avatar">👩</div>
+        <div>
+          <div class="t-name">Maria Santos</div>
+          <div class="t-role">Registered Nurse · Munich, Germany 🇩🇪</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <div class="t-quote">"14 months from enrollment to landing in Berlin. The job placement team found me a tech role that pays 3x what I made in Manila. This program changed my family's future."</div>
+      <div class="t-person">
+        <div class="t-avatar">👨</div>
+        <div>
+          <div class="t-name">Jose Reyes</div>
+          <div class="t-role">Software Engineer · Berlin, Germany 🇩🇪</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="cta-badge">Limited Spots · April 2026 Batch</div>
+  <h2>Ready to Build<br>Your Life in <span>Germany?</span></h2>
+  <p>Book a free consultation with our team — zero obligation, all answers.</p>
+  <div class="cta-btns">
+    <a href="#" class="btn-amber">🚀 Book Free Consultation</a>
+    <a href="mailto:info@autolingoplus.com" class="btn-ghost">📧 info@autolingoplus.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Auto<span>Lingo</span>Plus</div>
+  <div class="footer-links">
+    <a href="#">Programs</a>
+    <a href="#">Germany Guide</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">DTI Reg. JCAB564115970278 · +63 967 167 3889</div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget">
+  <div class="chat-label">Ask us anything 👋</div>
+  <div class="chat-btn">💬</div>
+</div>
+
+<script>
+  // ── Particles ──
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      alpha: Math.random() * 0.4 + 0.1
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 154, 60, ${p.alpha})`;
+      ctx.fill();
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  // ── Scroll reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), (i % 3) * 130);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.s-card, .why-card, .t-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

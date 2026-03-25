@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Lingo Plus — Your Gateway to Germany</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #111111;
+    --red: #CC0000;
+    --red-light: #FF1A1A;
+    --gold: #F4B942;
+    --gold-dark: #D4972A;
+    --white: #FFFFFF;
+    --off-white: #F9F9F7;
+    --gray: #888888;
+    --light-gray: #F2F2F2;
+    --border: #E5E5E5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--white);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--black);
+    padding: 0 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+  }
+
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; font-size: 1.2rem;
+    color: white; text-decoration: none;
+    letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: var(--red);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .logo span { color: var(--gold); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: white; }
+
+  .nav-cta {
+    background: var(--red); color: white;
+    padding: 10px 24px; border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.8rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--red-light); }
+
+  /* ── GERMAN FLAG STRIPE ── */
+  .flag-stripe {
+    height: 4px;
+    background: linear-gradient(to right, var(--black) 33.3%, var(--red) 33.3%, var(--red) 66.6%, var(--gold) 66.6%);
+    width: 100%;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    padding: 70px 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--black);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 80px 6% 80px 8%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--red), var(--gold));
+  }
+
+  .hero-number {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-number::before {
+    content: '';
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.08;
+    color: white;
+    letter-spacing: -0.02em;
+    animation: slideInLeft 0.8s ease both;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
+  }
+
+  .hero-divider {
+    width: 60px; height: 3px;
+    background: var(--red);
+    margin: 1.8rem 0;
+    animation: expandLine 0.8s ease 0.3s both;
+  }
+
+  @keyframes expandLine {
+    from { width: 0; }
+    to { width: 60px; }
+  }
+
+  .hero-sub {
+    font-size: 1rem; color: rgba(255,255,255,0.65);
+    line-height: 1.75; max-width: 440px;
+    animation: slideInLeft 0.8s ease 0.2s both;
+  }
+
+  .hero-actions {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: slideInLeft 0.8s ease 0.4s both;
+  }
+
+  .btn-red {
+    background: var(--red); color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 15px 28px; border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-red:hover { background: var(--red-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent; color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 14px 28px; border-radius: 4px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: white; }
+
+  .hero-stats {
+    margin-top: 3rem;
+    display: flex; gap: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    animation: slideInLeft 0.8s ease 0.5s both;
+  }
+  .stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--gold);
+  }
+  .stat-label {
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 2px;
+  }
+
+  @keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* Hero Right — Image/Map Panel */
+  .hero-right {
+    background: var(--off-white);
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 80px 6%;
+    position: relative; overflow: hidden;
+    gap: 1.5rem;
+  }
+
+  .map-visual {
+    width: 100%;
+    max-width: 380px;
+    background: white;
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    animation: slideInRight 0.8s ease 0.3s both;
+  }
+
+  .map-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 1.5rem;
+  }
+
+  .journey-line {
+    display: flex; flex-direction: column; gap: 0;
+  }
+
+  .journey-point {
+    display: flex; align-items: flex-start; gap: 14px;
+    position: relative;
+  }
+
+  .journey-point:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px; top: 40px;
+    width: 2px; height: 50px;
+    background: repeating-linear-gradient(to bottom, var(--border) 0, var(--border) 4px, transparent 4px, transparent 8px);
+  }
+
+  .point-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    border: 2px solid var(--border);
+    background: white;
+    animation: dotPop 0.4s ease both;
+    margin-top: 8px;
+  }
+  .point-dot.active { background: var(--red); border-color: var(--red); }
+
+  .point-info { padding: 8px 0 30px; }
+  .point-city {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800; font-size: 1rem; color: var(--black);
+  }
+  .point-detail { font-size: 0.82rem; color: var(--gray); margin-top: 2px; }
+
+  .arrow-line {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--red);
+    padding: 8px 0;
+    animation: arrowBounce 1.5s ease-in-out infinite;
+  }
+  @keyframes arrowBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(5px); }
+  }
+
+  .badge-row {
+    display: flex; gap: 0.75rem; flex-wrap: wrap;
+    animation: slideInRight 0.8s ease 0.5s both;
+  }
+
+  .badge {
+    background: white;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    color: var(--black);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    display: flex; align-items: center; gap: 8px;
+    border-left: 3px solid var(--gold);
+  }
+
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 100px 8%;
+    background: var(--white);
+  }
+
+  .section-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 900;
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+
+  .services-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .service-item {
+    background: var(--white);
+    padding: 2.5rem 2rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0; transform: translateY(20px);
+  }
+  .service-item.visible { animation: fadeUp 0.5s ease forwards; }
+  .service-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--red);
+    transition: width 0.3s;
+  }
+  .service-item:hover::after { width: 100%; }
+  .service-item:hover { background: var(--off-white); }
+
+  .svc-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 0.12em; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .svc-icon { font-size: 2rem; margin-bottom: 0.8rem; display: block; }
+  .svc-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem; font-weight: 800;
+    color: var(--black);
+    letter-spacing: -0.01em;
+    margin-bottom: 0.6rem;
+  }
+  .svc-desc { font-size: 0.87rem; color: var(--gray); line-height: 1.65; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--black);
+    padding: 4rem 8%;
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;
+    position: relative; overflow: hidden;
+  }
+  .stats-bar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--black) 33.3%, var(--red) 33.3%, var(--red) 66.6%, var(--gold) 66.6%);
+  }
+
+  .stat-col { text-align: center; }
+  .stat-big {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem; font-weight: 900;
+    color: var(--gold); line-height: 1;
+  }
+  .stat-unit {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; font-weight: 900;
+    color: var(--red); vertical-align: super;
+  }
+  .stat-desc {
+    font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+  }
+
+  /* ── WHY ── */
+  .why {
+    padding: 100px 8%;
+    background: var(--off-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .why-left h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+  }
+  .why-left h2 span { color: var(--red); }
+  .why-left p { color: var(--gray); line-height: 1.75; font-size: 0.97rem; margin-bottom: 2rem; }
+
+  .why-items { display: flex; flex-direction: column; gap: 1.5rem; }
+  .why-row {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    opacity: 0; transform: translateX(20px);
+  }
+  .why-row.visible { animation: slideLeft 0.5s ease forwards; }
+
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .why-bullet {
+    width: 44px; height: 44px;
+    background: var(--black);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .why-text h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem; font-weight: 800;
+    color: var(--black); margin-bottom: 4px;
+  }
+  .why-text p { font-size: 0.87rem; color: var(--gray); line-height: 1.6; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials {
+    padding: 100px 8%;
+    background: var(--white);
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .t-card {
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    position: relative;
+    transition: all 0.3s;
+    opacity: 0; transform: translateY(20px);
+  }
+  .t-card.visible { animation: fadeUp 0.5s ease forwards; }
+  .t-card:hover { border-color: var(--red); box-shadow: 0 4px 24px rgba(204,0,0,0.08); }
+
+  .t-card::before {
+    content: '"';
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    font-family: Georgia, serif;
+    font-size: 4rem; line-height: 1;
+    color: var(--gold); opacity: 0.4;
+  }
+
+  .t-quote { font-size: 0.95rem; color: var(--black); line-height: 1.75; margin-bottom: 1.5rem; }
+  .t-author {
+    display: flex; align-items: center; gap: 12px;
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+  .t-avatar {
+    width: 42px; height: 42px;
+    background: var(--off-white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+  }
+  .t-name { font-family: 'Montserrat', sans-serif; font-size: 0.88rem; font-weight: 800; }
+  .t-role { font-size: 0.78rem; color: var(--gray); margin-top: 2px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 100px 8%;
+    background: var(--black);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 2rem;
+    position: relative; overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--red), var(--gold));
+  }
+
+  .cta-left h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 900; color: white;
+    letter-spacing: -0.02em; line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+  .cta-left h2 span { color: var(--gold); }
+  .cta-left p { color: rgba(255,255,255,0.5); font-size: 0.97rem; }
+
+  .cta-right { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0A0A0A;
+    padding: 2rem 8%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900; font-size: 1rem;
+    color: white; letter-spacing: 0.02em;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-info { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.78rem; color: rgba(255,255,255,0.35);
+    text-decoration: none; transition: color 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── CHAT ── */
+  .chat-widget { position: fixed; bottom: 28px; right: 28px; z-index: 999; }
+  .chat-btn {
+    width: 58px; height: 58px;
+    background: var(--red);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 4px 20px rgba(204,0,0,0.45);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .chat-btn:hover { transform: scale(1.1); background: var(--red-light); }
+  .chat-label {
+    position: absolute;
+    right: 68px; top: 50%; transform: translateY(-50%);
+    background: white; color: var(--black);
+    padding: 8px 14px; border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem; font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    letter-spacing: 0.02em;
+  }
+  .chat-label::after {
+    content: '';
+    position: absolute;
+    right: -6px; top: 50%; transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: white;
+    border-right: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🇩🇪</div>
+    Auto<span>Lingo</span>Plus
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Programs</a></li>
+    <li><a href="#why">Why Germany</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Enroll Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-number">🇩🇪 Since 2020 · DTI Registered</div>
+    <h1>
+      Your Path to<br>
+      <em>Germany Starts Here.</em>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">
+      We are the Philippines' most trusted German language and immigration pathway platform. From A1 to your first German paycheck — every step, guided.
+    </p>
+    <div class="hero-actions">
+      <a href="#" class="btn-red">Start Your Journey</a>
+      <a href="#services" class="btn-outline">View Programs</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num"><span class="stat-unit">+</span>500</div>
+        <div class="stat-label">Students Placed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98<span class="stat-unit">%</span></div>
+        <div class="stat-label">Visa Success</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num"><span class="stat-unit">+</span>50</div>
+        <div class="stat-label">German Partners</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="map-visual">
+      <div class="map-title">🗺️ Your Journey</div>
+      <div class="journey-line">
+        <div class="journey-point">
+          <div class="point-dot">🇵🇭</div>
+          <div class="point-info">
+            <div class="point-city">Philippines</div>
+            <div class="point-detail">Start here · Language + preparation</div>
+          </div>
+        </div>
+        <div class="journey-point">
+          <div class="point-dot active">✈️</div>
+          <div class="point-info">
+            <div class="point-city">Visa & Documentation</div>
+            <div class="point-detail">We handle the paperwork</div>
+          </div>
+        </div>
+        <div class="journey-point">
+          <div class="point-dot">🇩🇪</div>
+          <div class="point-info">
+            <div class="point-city">Germany</div>
+            <div class="point-detail">Land your job · Build your life</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-row">
+      <div class="badge">🏥 Healthcare</div>
+      <div class="badge">💶 €45K+ Salary</div>
+      <div class="badge">🎓 Free University</div>
+      <div class="badge">🌍 Schengen Access</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-eyebrow">Our Programs</div>
+  <h2 class="section-title">Everything You Need<br>to Make Germany Real</h2>
+
+  <div class="services-layout">
+    <div class="service-item">
+      <div class="svc-num">01</div>
+      <span class="svc-icon">🎓</span>
+      <div class="svc-title">German Language Course</div>
+      <div class="svc-desc">A1 to C1 with certified instructors. Live sessions, flexible schedule, conversation-focused.</div>
+    </div>
+    <div class="service-item">
+      <div class="svc-num">02</div>
+      <span class="svc-icon">🏫</span>
+      <div class="svc-title">Study in Germany</div>
+      <div class="svc-desc">University applications, scholarship guidance, and student visa support from start to finish.</div>
+    </div>
+    <div class="service-item">
+      <div class="svc-num">03</div>
+      <span class="svc-icon">👨‍👩‍👧</span>
+      <div class="svc-title">Family Reunification</div>
+      <div class="svc-desc">Bring your family to Germany with proper visa documentation and legal support.</div>
+    </div>
+    <div class="service-item">
+      <div class="svc-num">04</div>
+      <span class="svc-icon">💼</span>
+      <div class="svc-title">Job Placement</div>
+      <div class="svc-desc">Direct connections to 50+ German employers hiring skilled Filipinos now.</div>
+    </div>
+    <div class="service-item">
+      <div class="svc-num">05</div>
+      <span class="svc-icon">📝</span>
+      <div class="svc-title">Document Translation</div>
+      <div class="svc-desc">Certified translation of diplomas, birth certificates, and all legal documents.</div>
+    </div>
+    <div class="service-item">
+      <div class="svc-num">06</div>
+      <span class="svc-icon">🛡️</span>
+      <div class="svc-title">Travel Insurance</div>
+      <div class="svc-desc">Tailored health and travel insurance packages for Filipinos moving to Germany.</div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-col">
+    <div class="stat-big">500<span style="color:var(--red);font-size:2rem">+</span></div>
+    <div class="stat-desc">Students Enrolled</div>
+  </div>
+  <div class="stat-col">
+    <div class="stat-big">98<span style="color:var(--red);font-size:2rem">%</span></div>
+    <div class="stat-desc">Visa Approval Rate</div>
+  </div>
+  <div class="stat-col">
+    <div class="stat-big">12</div>
+    <div class="stat-desc">German Cities Covered</div>
+  </div>
+  <div class="stat-col">
+    <div class="stat-big">6</div>
+    <div class="stat-desc">Years of Experience</div>
+  </div>
+</div>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="why-left">
+    <div class="section-eyebrow">Why Germany</div>
+    <h2>The Smartest Move<br>a Filipino Can Make <span>Today</span></h2>
+    <p>Germany actively needs skilled workers from abroad. For Filipinos, it's not just an opportunity — it's one of the most direct paths to a secure, prosperous future.</p>
+  </div>
+  <div class="why-items">
+    <div class="why-row">
+      <div class="why-bullet">🏥</div>
+      <div class="why-text">
+        <h4>Universal Healthcare from Day 1</h4>
+        <p>Full health coverage for you and your family the moment you arrive — no waiting period.</p>
+      </div>
+    </div>
+    <div class="why-row">
+      <div class="why-bullet">💰</div>
+      <div class="why-text">
+        <h4>€45,000+ Average Salary</h4>
+        <p>Europe's strongest economy with strict minimum wage laws and worker protections.</p>
+      </div>
+    </div>
+    <div class="why-row">
+      <div class="why-bullet">🎓</div>
+      <div class="why-text">
+        <h4>Free University Education</h4>
+        <p>German public universities charge zero tuition — your children study for free.</p>
+      </div>
+    </div>
+    <div class="why-row">
+      <div class="why-bullet">🌍</div>
+      <div class="why-text">
+        <h4>Schengen Zone Access</h4>
+        <p>Travel freely across 26 European countries with your German residency.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-eyebrow">Success Stories</div>
+  <h2 class="section-title">Filipinos Who Made It</h2>
+
+  <div class="testimonial-grid">
+    <div class="t-card">
+      <div class="t-quote">"Auto Lingo Plus was with me every step — from my first German class to signing my employment contract in Frankfurt. I owe them everything."</div>
+      <div class="t-author">
+        <div class="t-avatar">👩</div>
+        <div>
+          <div class="t-name">Maria Santos</div>
+          <div class="t-role">Registered Nurse · Munich, Germany</div>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-quote">"I was skeptical at first. But 14 months after enrolling, I was living in Berlin with a software engineering job. This program delivers."</div>
+      <div class="t-author">
+        <div class="t-avatar">👨</div>
+        <div>
+          <div class="t-name">Jose Reyes</div>
+          <div class="t-role">Software Engineer · Berlin, Germany</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-left">
+    <h2>Your Germany Story<br>Starts <span>Right Now</span></h2>
+    <p>Book a free consultation — no commitment required.</p>
+  </div>
+  <div class="cta-right">
+    <a href="#" class="btn-red">Book Free Consultation</a>
+    <a href="mailto:info@autolingoplus.com" class="btn-outline">info@autolingoplus.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Auto<span>Lingo</span>Plus</div>
+  <div class="footer-links">
+    <a href="#">Programs</a>
+    <a href="#">Germany</a>
+    <a href="#">Jobs</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-info">DTI Reg. JCAB564115970278 · +63 967 167 3889</div>
+</footer>
+
+<!-- CHAT -->
+<div class="chat-widget">
+  <div class="chat-label">Ask us anything</div>
+  <div class="chat-btn">💬</div>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), (i % 3) * 120);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.service-item, .why-row, .t-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

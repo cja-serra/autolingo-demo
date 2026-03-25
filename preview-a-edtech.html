@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Lingo Plus — Your Gateway to Germany</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #00B4D8;
+    --teal-dark: #0096C7;
+    --teal-light: #E0F7FA;
+    --gold: #F4A261;
+    --gold-dark: #E76F51;
+    --dark: #1A1A2E;
+    --gray: #64748B;
+    --light: #F8FFFE;
+    --white: #FFFFFF;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,180,216,0.1);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+
+  .logo {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900; font-size: 1.4rem;
+    color: var(--dark);
+    text-decoration: none;
+  }
+  .logo span { color: var(--teal); }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.9rem; font-weight: 600;
+    color: var(--gray); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--teal); color: white;
+    padding: 10px 22px; border-radius: 50px;
+    font-weight: 700; font-size: 0.9rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 14px rgba(0,180,216,0.35);
+  }
+  .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,180,216,0.45); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    background: linear-gradient(135deg, #F0FDFF 0%, #E0F7FA 40%, #FFF8F0 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.25;
+    animation: blobFloat 8s ease-in-out infinite;
+  }
+  .blob1 { width: 400px; height: 400px; background: var(--teal); top: -100px; right: -80px; }
+  .blob2 { width: 300px; height: 300px; background: var(--gold); bottom: 0; left: 5%; animation-delay: 3s; }
+  .blob3 { width: 200px; height: 200px; background: #A8DADC; top: 40%; right: 30%; animation-delay: 5s; }
+
+  @keyframes blobFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .floating-words {
+    position: absolute;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .word-bubble {
+    background: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    animation: bubbleFloat 4s ease-in-out infinite;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .word-bubble:nth-child(2) { animation-delay: 0.8s; margin-left: 30px; }
+  .word-bubble:nth-child(3) { animation-delay: 1.6s; }
+  .word-bubble:nth-child(4) { animation-delay: 2.4s; margin-left: 20px; }
+  .word-bubble:nth-child(5) { animation-delay: 3.2s; }
+
+  @keyframes bubbleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .word-bubble .flag { font-size: 1.2rem; }
+  .word-bubble.teal { border-left: 3px solid var(--teal); }
+  .word-bubble.gold { border-left: 3px solid var(--gold); }
+
+  .hero-content {
+    max-width: 600px;
+    position: relative; z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    padding: 8px 16px; border-radius: 50px;
+    font-size: 0.82rem; font-weight: 700;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+  .hero-badge .dot { width: 8px; height: 8px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: var(--dark);
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  h1 .highlight {
+    color: var(--teal);
+    position: relative;
+    display: inline-block;
+  }
+  h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 8px;
+    background: var(--gold);
+    opacity: 0.4;
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  .hero-sub {
+    margin-top: 1.2rem;
+    font-size: 1.1rem;
+    color: var(--gray);
+    line-height: 1.7;
+    animation: fadeUp 0.6s ease 0.2s both;
+  }
+
+  .hero-actions {
+    margin-top: 2rem;
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.6s ease 0.3s both;
+  }
+
+  .btn-primary {
+    background: var(--teal);
+    color: white; font-weight: 700; font-size: 1rem;
+    padding: 14px 30px; border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,180,216,0.4);
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,180,216,0.5); }
+
+  .btn-secondary {
+    background: white;
+    color: var(--dark); font-weight: 700; font-size: 1rem;
+    padding: 14px 30px; border-radius: 50px;
+    text-decoration: none;
+    border: 2px solid rgba(0,0,0,0.08);
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-secondary:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-3px); }
+
+  .hero-stats {
+    margin-top: 2.5rem;
+    display: flex; gap: 2rem;
+    animation: fadeUp 0.6s ease 0.4s both;
+  }
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8rem; font-weight: 900;
+    color: var(--dark);
+  }
+  .stat-label { font-size: 0.78rem; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 100px 5%;
+    background: var(--white);
+  }
+
+  .section-label {
+    text-align: center;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 900;
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--gray);
+    font-size: 1rem;
+    margin-bottom: 3.5rem;
+    max-width: 520px;
+    margin-left: auto; margin-right: auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--light);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    cursor: pointer;
+    opacity: 0; transform: translateY(30px);
+  }
+  .service-card.visible { animation: fadeUp 0.5s ease forwards; }
+  .service-card:hover {
+    border-color: var(--teal);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0,180,216,0.15);
+  }
+
+  .card-icon {
+    width: 56px; height: 56px;
+    background: var(--teal-light);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    transition: all 0.3s;
+  }
+  .service-card:hover .card-icon { background: var(--teal); transform: scale(1.1) rotate(-5deg); }
+
+  .card-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.1rem; font-weight: 800;
+    color: var(--dark); margin-bottom: 0.5rem;
+  }
+
+  .card-desc {
+    font-size: 0.9rem; color: var(--gray);
+    line-height: 1.6;
+  }
+
+  .card-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 1rem;
+    font-size: 0.85rem; font-weight: 700;
+    color: var(--teal); text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .card-link:hover { gap: 8px; }
+
+  /* ── WHY GERMANY ── */
+  .why {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+    color: white;
+    position: relative; overflow: hidden;
+  }
+
+  .why::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(0,180,216,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .why .section-label { color: var(--gold); }
+  .why .section-title { color: white; }
+  .why .section-sub { color: rgba(255,255,255,0.6); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    max-width: 1000px; margin: 0 auto;
+  }
+
+  .why-item {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.04);
+    transition: all 0.3s;
+    opacity: 0; transform: translateY(30px);
+  }
+  .why-item.visible { animation: fadeUp 0.5s ease forwards; }
+  .why-item:hover {
+    background: rgba(0,180,216,0.1);
+    border-color: rgba(0,180,216,0.3);
+    transform: translateY(-5px);
+  }
+
+  .why-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
+  .why-title {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.05rem; font-weight: 800;
+    color: white; margin-bottom: 0.5rem;
+  }
+  .why-desc { font-size: 0.87rem; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  /* ── TESTIMONIAL ── */
+  .testimonials {
+    padding: 100px 5%;
+    background: var(--light);
+  }
+
+  .testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px; margin: 0 auto;
+  }
+
+  .testimonial-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--teal);
+    opacity: 0; transform: translateY(30px);
+  }
+  .testimonial-card.visible { animation: fadeUp 0.5s ease forwards; }
+
+  .stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .quote { font-size: 0.95rem; color: var(--gray); line-height: 1.7; font-style: italic; }
+  .author {
+    margin-top: 1.2rem;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .author-avatar {
+    width: 40px; height: 40px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .author-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+  .author-loc { font-size: 0.78rem; color: var(--gray); }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '🇩🇪';
+    position: absolute;
+    font-size: 15rem;
+    opacity: 0.05;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .cta-section h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; color: white;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .cta-section p {
+    font-size: 1.1rem; color: rgba(255,255,255,0.85);
+    margin-bottom: 2.5rem; position: relative;
+  }
+  .btn-white {
+    background: white; color: var(--teal);
+    font-weight: 800; font-size: 1.05rem;
+    padding: 16px 36px; border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transition: all 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    position: relative;
+  }
+  .btn-white:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    padding: 3rem 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 1.2rem; color: white; }
+  .footer-logo span { color: var(--teal); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+  .footer-copy { font-size: 0.8rem; }
+
+  /* ── CHAT WIDGET ── */
+  .chat-widget {
+    position: fixed; bottom: 28px; right: 28px;
+    z-index: 999;
+  }
+  .chat-btn {
+    width: 60px; height: 60px;
+    background: var(--teal);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,180,216,0.45);
+    cursor: pointer;
+    transition: all 0.2s;
+    animation: chatPulse 3s ease-in-out infinite;
+  }
+  .chat-btn:hover { transform: scale(1.1); }
+  @keyframes chatPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(0,180,216,0.45); }
+    50% { box-shadow: 0 4px 32px rgba(0,180,216,0.7); }
+  }
+  .chat-label {
+    position: absolute;
+    right: 72px; top: 50%; transform: translateY(-50%);
+    background: var(--dark); color: white;
+    padding: 8px 14px; border-radius: 10px;
+    font-size: 0.82rem; font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    animation: chatLabel 4s ease-in-out infinite;
+  }
+  .chat-label::after {
+    content: '';
+    position: absolute;
+    right: -6px; top: 50%; transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: var(--dark);
+    border-right: 0;
+  }
+  @keyframes chatLabel {
+    0%, 80%, 100% { opacity: 1; }
+    40% { opacity: 0.7; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Auto<span>Lingo</span>Plus</a>
+  <ul class="nav-links">
+    <li><a href="#services">Courses</a></li>
+    <li><a href="#why">Study in Germany</a></li>
+    <li><a href="#testimonials">Success Stories</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Get Started →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      🇩🇪 Enrolling Now — April 2026 Batch
+    </div>
+
+    <h1>Learn German.<br>Live Your <span class="highlight">Germany Dream</span>.</h1>
+
+    <p class="hero-sub">
+      From language classes to visa support, job placement, and relocation — we guide you every step of the way from the Philippines to Germany.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#" class="btn-primary">Start Learning Free →</a>
+      <a href="#services" class="btn-secondary">🎓 Explore Programs</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Students Enrolled</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Visa Success Rate</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Partner Companies</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="floating-words">
+    <div class="word-bubble teal"><span class="flag">🇩🇪</span> Guten Tag!</div>
+    <div class="word-bubble gold">Danke schön ✨</div>
+    <div class="word-bubble teal">Wie geht's? 😊</div>
+    <div class="word-bubble gold"><span class="flag">🇵🇭</span> Auf Wiedersehen</div>
+    <div class="word-bubble teal">Herzlich willkommen 🌟</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-label">Everything You Need</div>
+  <h2 class="section-title">Your Complete Germany Pathway</h2>
+  <p class="section-sub">From your first German word to landing your dream job — we've got every step covered.</p>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="card-icon">🎓</div>
+      <div class="card-title">German Language Course</div>
+      <div class="card-desc">A1 to C1 levels with certified teachers. Live classes, flexible schedule, and real conversation practice.</div>
+      <a href="#" class="card-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="card-icon">🏫</div>
+      <div class="card-title">Study in Germany</div>
+      <div class="card-desc">University application support, scholarship guidance, and student visa assistance for your academic journey.</div>
+      <a href="#" class="card-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="card-icon">👨‍👩‍👧</div>
+      <div class="card-title">Reunite in Germany</div>
+      <div class="card-desc">Family reunification visa support. We help you bring your loved ones to Germany the right way.</div>
+      <a href="#" class="card-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="card-icon">💼</div>
+      <div class="card-title">Job Opportunities</div>
+      <div class="card-desc">Connect with 50+ German companies actively hiring skilled Filipino workers. We prepare your CV and interview.</div>
+      <a href="#" class="card-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="card-icon">📝</div>
+      <div class="card-title">Translation Services</div>
+      <div class="card-desc">Certified document translation for visas, diplomas, birth certificates, and legal documents.</div>
+      <a href="#" class="card-link">Learn more →</a>
+    </div>
+    <div class="service-card">
+      <div class="card-icon">🛡️</div>
+      <div class="card-title">Auto Lingo Insurance</div>
+      <div class="card-desc">Travel and health insurance packages tailored for Filipinos moving to or visiting Germany.</div>
+      <a href="#" class="card-link">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY GERMANY -->
+<section class="why" id="why">
+  <div class="section-label">Why Germany?</div>
+  <h2 class="section-title" style="color:white;">The World's Best Destination<br>for Filipino Professionals</h2>
+  <p class="section-sub">Germany is the #1 destination for Filipinos seeking a better life — here's why thousands choose to make the move.</p>
+
+  <div class="why-grid">
+    <div class="why-item">
+      <span class="why-icon">🏥</span>
+      <div class="why-title">World-Class Healthcare</div>
+      <div class="why-desc">Universal healthcare for all residents. Your health is protected from day one.</div>
+    </div>
+    <div class="why-item">
+      <span class="why-icon">💰</span>
+      <div class="why-title">Strong Economy</div>
+      <div class="why-desc">Europe's largest economy with €45,000+ average annual salary and strong worker protections.</div>
+    </div>
+    <div class="why-item">
+      <span class="why-icon">🎓</span>
+      <div class="why-title">Free University Education</div>
+      <div class="why-desc">Most German public universities charge zero tuition — even for international students.</div>
+    </div>
+    <div class="why-item">
+      <span class="why-icon">⚖️</span>
+      <div class="why-title">Work-Life Balance</div>
+      <div class="why-desc">28+ vacation days per year, strict working hour limits, and generous family leave policies.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-label">Success Stories</div>
+  <h2 class="section-title">Filipinos Thriving in Germany</h2>
+  <p class="section-sub">Real stories from our students who made the leap — and never looked back.</p>
+
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="quote">"I went from zero German to B2 level in 8 months. Auto Lingo Plus helped me land a nursing job in Munich. Best decision I ever made."</div>
+      <div class="author">
+        <div class="author-avatar">👩</div>
+        <div>
+          <div class="author-name">Maria Santos</div>
+          <div class="author-loc">📍 Munich, Germany · Nurse</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <div class="quote">"The team handled everything — my visa, my job application, even my apartment search. I felt supported the whole way through."</div>
+      <div class="author">
+        <div class="author-avatar">👨</div>
+        <div>
+          <div class="author-name">Jose Reyes</div>
+          <div class="author-loc">📍 Berlin, Germany · Software Engineer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <h2>Ready to Start Your Germany Journey?</h2>
+  <p>Join 500+ Filipinos who chose a better life. Your first lesson is free.</p>
+  <a href="#" class="btn-white">🚀 Get Started Today — It's Free</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Auto<span>Lingo</span>Plus</div>
+  <div class="footer-links">
+    <a href="#">Courses</a>
+    <a href="#">Study in Germany</a>
+    <a href="#">Jobs</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">info@autolingoplus.com · +63 967 167 3889</div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div class="chat-widget">
+  <div class="chat-label">Ask us anything 👋</div>
+  <div class="chat-btn">💬</div>
+</div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, entry.target.dataset.delay || 0);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.service-card, .why-item, .testimonial-card').forEach((el, i) => {
+    el.dataset.delay = (i % 3) * 100;
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

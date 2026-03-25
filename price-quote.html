@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Quote — Auto Lingo Plus</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #F4F4F0;
+    color: #1A1A1A;
+    padding: 60px 20px;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+  }
+
+  /* Header */
+  .header {
+    background: #0D1B2A;
+    padding: 48px 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .from-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+  .from-name span { color: #FF9A3C; }
+  .from-detail {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  .quote-label {
+    text-align: right;
+  }
+  .quote-word {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+  }
+  .quote-num {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #FF9A3C;
+    margin-top: 4px;
+  }
+  .quote-date {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px;
+  }
+
+  /* To / Body */
+  .body { padding: 48px 52px; }
+
+  .to-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 36px;
+    border-bottom: 1px solid #ECECEC;
+    margin-bottom: 36px;
+  }
+
+  .to-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    margin-bottom: 8px;
+  }
+
+  .to-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1A1A1A;
+  }
+  .to-detail {
+    font-size: 0.82rem;
+    color: #888;
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+
+  .validity {
+    text-align: right;
+  }
+  .validity-box {
+    background: #FFF8F0;
+    border: 1px solid #FFD9AA;
+    border-radius: 8px;
+    padding: 12px 18px;
+    text-align: center;
+  }
+  .validity-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #E8852A;
+  }
+  .validity-date {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-top: 4px;
+  }
+
+  /* Project Summary */
+  .project-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    margin-bottom: 12px;
+  }
+  .project-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0D1B2A;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .project-desc {
+    font-size: 0.88rem;
+    color: #888;
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+
+  /* Line Items */
+  .items-header {
+    display: grid;
+    grid-template-columns: 1fr 100px 100px;
+    gap: 1rem;
+    padding: 0 0 10px;
+    border-bottom: 2px solid #1A1A1A;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .items-header .right { text-align: right; }
+
+  .line-item {
+    display: grid;
+    grid-template-columns: 1fr 100px 100px;
+    gap: 1rem;
+    padding: 18px 0;
+    border-bottom: 1px solid #F0F0F0;
+    align-items: start;
+  }
+
+  .item-name {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin-bottom: 4px;
+  }
+  .item-desc {
+    font-size: 0.8rem;
+    color: #AAAAAA;
+    line-height: 1.5;
+  }
+  .item-type {
+    font-size: 0.78rem;
+    color: #888;
+    text-align: right;
+    padding-top: 2px;
+  }
+  .item-price {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    text-align: right;
+    padding-top: 2px;
+  }
+
+  .section-divider {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #CCCCCC;
+    padding: 20px 0 4px;
+  }
+
+  /* Totals */
+  .totals {
+    margin-top: 28px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .totals-box {
+    width: 300px;
+  }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 0.87rem;
+    color: #888;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .total-row.grand {
+    border-bottom: none;
+    padding-top: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1A1A1A;
+  }
+  .total-row.grand .amount { color: #FF9A3C; font-size: 1.15rem; }
+  .total-row.monthly {
+    color: #888;
+    font-size: 0.82rem;
+  }
+
+  /* Notes */
+  .notes {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid #ECECEC;
+  }
+
+  .notes-title {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #AAAAAA;
+    margin-bottom: 14px;
+  }
+
+  .notes-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .notes-list li {
+    font-size: 0.83rem;
+    color: #888;
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .notes-list li::before {
+    content: '—';
+    color: #CCCCCC;
+    flex-shrink: 0;
+  }
+
+  /* CTA */
+  .cta-row {
+    margin-top: 40px;
+    background: #0D1B2A;
+    border-radius: 10px;
+    padding: 28px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .cta-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    line-height: 1.5;
+  }
+  .cta-text span { color: #FF9A3C; }
+  .cta-sub {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 4px;
+  }
+  .cta-contact {
+    text-align: right;
+  }
+  .cta-email {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #FF9A3C;
+  }
+  .cta-phone {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.4);
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 24px 52px;
+    background: #F9F9F7;
+    border-top: 1px solid #ECECEC;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .footer-note {
+    font-size: 0.75rem;
+    color: #CCCCCC;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="from-name">CJA <span>·</span> Serra AI</div>
+      <div class="from-detail">Web Design & AI Chat Solutions</div>
+    </div>
+    <div class="quote-label">
+      <div class="quote-word">Price Quote</div>
+      <div class="quote-num">#Q-2026-04</div>
+      <div class="quote-date">March 24, 2026</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- TO -->
+    <div class="to-block">
+      <div>
+        <div class="to-label">Prepared for</div>
+        <div class="to-name">Auto Lingo Plus</div>
+        <div class="to-detail">
+          autolingoplus.com<br>
+          info@autolingoplus.com
+        </div>
+      </div>
+      <div class="validity">
+        <div class="validity-box">
+          <div class="validity-label">Valid Until</div>
+          <div class="validity-date">April 24, 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT -->
+    <div class="project-title">Project Scope</div>
+    <div class="project-name">Website Redesign + Live Chat Integration</div>
+    <div class="project-desc">
+      A full redesign of autolingoplus.com with a modern, animated layout — plus integration of a 24/7 AI chat assistant to help visitors get answers instantly and convert into leads.
+    </div>
+
+    <!-- LINE ITEMS -->
+    <div class="items-header">
+      <div>Service</div>
+      <div class="right">Type</div>
+      <div class="right">Price</div>
+    </div>
+
+    <div class="section-divider">One-Time Services</div>
+
+    <div class="line-item">
+      <div>
+        <div class="item-name">Website Redesign</div>
+        <div class="item-desc">Full redesign of autolingoplus.com — custom layout, modern animations, mobile-friendly, all pages updated. 2 revision rounds included.</div>
+      </div>
+      <div class="item-type">One-time</div>
+      <div class="item-price">$800.00</div>
+    </div>
+
+    <div class="line-item">
+      <div>
+        <div class="item-name">AI Chat Setup & Installation</div>
+        <div class="item-desc">Setup and installation of Serra AI chat assistant on your website. Configured to answer questions about your programs, pricing, and enrollment.</div>
+      </div>
+      <div class="item-type">One-time</div>
+      <div class="item-price">$50.00</div>
+    </div>
+
+    <div class="section-divider">Monthly Services (Optional)</div>
+
+    <div class="line-item">
+      <div>
+        <div class="item-name">Website Hosting & Maintenance</div>
+        <div class="item-desc">We host and maintain your site. Includes text/image updates on request, uptime monitoring, and backups.</div>
+      </div>
+      <div class="item-type">Monthly</div>
+      <div class="item-price">$40.00</div>
+    </div>
+
+    <div class="line-item">
+      <div>
+        <div class="item-name">Serra AI Chat — Standard Plan</div>
+        <div class="item-desc">AI chat assistant running 24/7 on your site. Includes up to 200 conversations/day, lead capture, and full chat history. 14-day free trial included.</div>
+      </div>
+      <div class="item-type">Monthly</div>
+      <div class="item-price">$79.00</div>
+    </div>
+
+    <!-- TOTALS -->
+    <div class="totals">
+      <div class="totals-box">
+        <div class="total-row">
+          <span>One-time setup total</span>
+          <span>$850.00</span>
+        </div>
+        <div class="total-row monthly">
+          <span>Optional monthly (hosting + chat)</span>
+          <span>$119.00/mo</span>
+        </div>
+        <div class="total-row grand">
+          <span>Due to start</span>
+          <span class="amount">$850.00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="notes">
+      <div class="notes-title">Notes & Terms</div>
+      <ul class="notes-list">
+        <li>50% deposit ($425) required to begin. Balance due upon site launch.</li>
+        <li>AI chat plan includes a 14-day free trial — no charge until trial ends.</li>
+        <li>Monthly services are optional and can be cancelled anytime.</li>
+        <li>Website files remain your property. Hosting plan is month-to-month.</li>
+        <li>Turnaround: 7–10 business days from deposit to live site.</li>
+        <li>2 rounds of revisions included. Additional rounds at $75 each.</li>
+      </ul>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-row">
+      <div class="cta-text">
+        Ready to move forward? <span>Let's get started.</span>
+        <div class="cta-sub">Reply to this quote or reach out directly to confirm.</div>
+      </div>
+      <div class="cta-contact">
+        <div class="cta-email">cja@serrachat.com</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-note">CJA · Serra AI — cja@serrachat.com</div>
+    <div class="footer-note">Quote #Q-2026-04 · Valid 30 days from issue date</div>
+  </div>
+
+</div>
+</body>
+</html>
