@@ -18,7 +18,7 @@
     --white: #FFFFFF;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-user-select: none; }
 
   html { scroll-behavior: smooth; }
 
@@ -707,6 +707,8 @@
       }
     });
   }, { threshold: 0.15 });
+
+  document.addEventListener('contextmenu', e => e.preventDefault());
 
   document.querySelectorAll('.service-card, .why-item, .testimonial-card').forEach((el, i) => {
     el.dataset.delay = (i % 3) * 100;

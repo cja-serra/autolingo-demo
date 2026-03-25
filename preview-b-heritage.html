@@ -19,7 +19,7 @@
     --border: #E5E5E5;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-user-select: none; }
   html { scroll-behavior: smooth; }
 
   body {
@@ -852,6 +852,8 @@
       }
     });
   }, { threshold: 0.15 });
+
+  document.addEventListener('contextmenu', e => e.preventDefault());
 
   document.querySelectorAll('.service-item, .why-row, .t-card').forEach(el => observer.observe(el));
 </script>
